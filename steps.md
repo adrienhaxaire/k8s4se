@@ -44,7 +44,7 @@ https://helm.sh/docs/intro/quickstart/#initialize-a-helm-chart-repository
 
 https://helm.sh/docs/intro/using_helm/#creating-your-own-charts
 
-
+TODO: fix helm charts for hello
 
 
 
@@ -53,9 +53,7 @@ https://helm.sh/docs/intro/using_helm/#creating-your-own-charts
 
 install golang
 
+https://golang.org/doc/articles/wiki/
 
-
-
-kubectl get pod,svc -n kube-system
 
 

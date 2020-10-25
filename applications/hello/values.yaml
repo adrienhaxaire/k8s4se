@@ -1,11 +1,14 @@
 replicaCount: 1
 
 image:
+  registry: docker.io
   repository: k8s4se/hello
   pullPolicy: IfNotPresent
   tag: latest
 
-imagePullSecrets: [dockerhub-secrets]
+imagePullSecrets:
+  - name: dockerhub-secret
+
 nameOverride: ""
 fullnameOverride: ""
 
@@ -34,6 +37,9 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
+
+hello:
+  port: 8081
 
 ingress:
   enabled: false
