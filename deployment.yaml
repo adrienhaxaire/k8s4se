@@ -17,3 +17,5 @@ spec:
         image: k8s4se/hello:latest
         ports:
         - containerPort: 8080
+      imagePullSecrets:
+      - name: dockerhub-secret

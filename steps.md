@@ -7,8 +7,8 @@ follow the [minikube tutorial](https://kubernetes.io/docs/tutorials/hello-miniku
 
 configure the registry: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 
-kubectl create secret generic regcred  --from-file=.dockerconfigjson=$HOME/.docker/config.json --type=kubernetes.io/dockerconfigjson
-kubectl get secret regcred --output="jsonpath={.data.\.dockerconfigjson}" | base64 --decode
+kubectl create secret generic dockerhub  --from-file=.dockerconfigjson=$HOME/.docker/config.json --type=kubernetes.io/dockerconfigjson
+kubectl get secret dockerhub --output="jsonpath={.data.\.dockerconfigjson}" | base64 --decode
 
 https://minikube.sigs.k8s.io/docs/handbook/registry/
 
