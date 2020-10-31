@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: hello-service
+  name: hello
 spec:
   selector:
     deployment: hello
