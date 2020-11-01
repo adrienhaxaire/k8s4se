@@ -7,8 +7,8 @@ Compile with:
 
 Build then run the docker image with:
 
-    docker build . -t k8s4se.org/hello
-    docker run -p 8080:8080 k8s4se.org/hello
+    docker build . -t k8s4se/hello
+    docker run -it -p 8080:8080 k8s4se/hello
 
 Then vist http://localhost:8080/toto, you should see `Hello, you've requested: /toto`.
 
@@ -16,6 +16,6 @@ Note the size of the image!
 
     λ> docker image ls
     REPOSITORY                                                 TAG                      IMAGE ID            CREATED             SIZE
-    k8s4se.org/hello                                           latest                   60ef39dbdd1a        2 minutes ago       10.5MB
+    k8s4se/hello                                               latest                   60ef39dbdd1a        2 minutes ago       10.5MB
 
 
