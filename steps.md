@@ -7,14 +7,6 @@ follow the [minikube tutorial](https://kubernetes.io/docs/tutorials/hello-miniku
 kubectl create deployment hello --image=k8s4se/hello
 
 
-
-
-
-
-
-
-
-
 configure the registry: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 kubectl create secret generic dockerhub  --from-file=.dockerconfigjson=$HOME/.docker/config.json --type=kubernetes.io/dockerconfigjson
 kubectl get secret dockerhub --output="jsonpath={.data.\.dockerconfigjson}" | base64 --decode
@@ -57,16 +49,17 @@ https://helm.sh/docs/intro/quickstart/#initialize-a-helm-chart-repository
 
 https://helm.sh/docs/intro/using_helm/#creating-your-own-charts
 
-TODO: fix helm charts for hello
-
-
-
-
-
 
 install golang
 
 https://golang.org/doc/articles/wiki/
 
 
+## terraform
 
+https://www.hashicorp.com/blog/using-the-kubernetes-and-helm-providers-with-terraform-0-12
+
+https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs
+
+
+minikube start --cpus=6 --memory=16g

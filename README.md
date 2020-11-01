@@ -17,7 +17,3 @@ Notes on learning Kubernetes from a software engineer background
 - dashboards with grafana
 
 
-
-
-
-
