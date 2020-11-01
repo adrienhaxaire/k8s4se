@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   registry: docker.io
   repository: k8s4se/hello
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   tag: latest
 
 imagePullSecrets:
