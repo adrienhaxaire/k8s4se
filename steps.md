@@ -61,5 +61,30 @@ https://www.hashicorp.com/blog/using-the-kubernetes-and-helm-providers-with-terr
 
 https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs
 
+For elasticsearch
+minikube addons enable default-storageclass
+minikube addons enable storage-provisioner
 
 minikube start --cpus=6 --memory=16g
+
+minikube config set cpus 6 
+minikube config set memory 16384
+
+
+helm install hello applications/hello/charts
+
+https://artifacthub.io/packages/helm/helm-stable/fluentd
+helm install fluentd stable/fluentd
+
+helm repo add elastic https://helm.elastic.co
+
+https://artifacthub.io/packages/helm/elastic/kibana
+helm install kibana elastic/kibana --version 7.9.3 --set service.type=LoadBalancer
+
+https://artifacthub.io/packages/helm/elastic/elasticsearch
+helm install elasticsearch elastic/elasticsearch --version 7.9.3
+helm install elasticsearch elastic/elasticsearch --version 7.9.3 --values elasticsearch-values.yaml 
+kubectl expose deploy elasticsearch --port 9200
+
+
+minikube ssh
