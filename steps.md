@@ -64,6 +64,7 @@ https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs
 For elasticsearch
 minikube addons enable default-storageclass
 minikube addons enable storage-provisioner
+minikube addons enable ingress
 
 minikube start --cpus=6 --memory=16g
 
@@ -88,3 +89,5 @@ kubectl expose deploy elasticsearch --port 9200
 
 
 minikube ssh
+
+Watch out! you need to call `minikube addons enable ingress` **after** having created the ingress resource!

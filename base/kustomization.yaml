@@ -1,6 +1,4 @@
-commonLabels:
-  app: hello
-
 resources:
-- service.yaml
-- deployment.yaml
+- k8s4se-namespace.yaml
+- hello-service.yaml
+- hello-deployment.yaml

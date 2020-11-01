@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello
+  namespace: k8s4se
 spec:
   replicas: 
   selector:
@@ -17,5 +18,3 @@ spec:
         image: k8s4se/hello:latest
         ports:
         - containerPort: 8080
-      imagePullSecrets:
-      - name: dockerhub-secret

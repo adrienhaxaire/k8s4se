@@ -2,10 +2,11 @@ kind: Service
 apiVersion: v1
 metadata:
   name: hello
+  namespace: k8s4se
 spec:
   selector:
     deployment: hello
-  type: LoadBalancer
+  type: NodePort
   ports:
   - protocol: TCP
     port: 8080
