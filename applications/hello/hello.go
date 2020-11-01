@@ -3,10 +3,12 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"log"
 )
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		log.Print(r.URL.Path, " requested from ", r.RemoteAddr)
 		fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
 	})
 
