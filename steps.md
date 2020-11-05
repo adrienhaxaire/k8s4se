@@ -110,8 +110,8 @@ https://lernentec.com/post/running-simple-elasticsearch-kibana-minikube/
 
 
 
-
-minikube start --mount --mount-string=$PWD/volumes/elasticsearch:/volumes/elasticsearch
+mkdir volumes
+minikube start --mount --mount-string=$PWD/volumes:/volumes
 
 docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.9.3
 https://hub.docker.com/_/elasticsearch
