@@ -72,6 +72,7 @@ minikube config set cpus 6
 minikube config set memory 16384
 
 
+## helm
 helm install hello applications/hello/charts
 
 https://artifacthub.io/packages/helm/helm-stable/fluentd
@@ -91,3 +92,28 @@ kubectl expose deploy elasticsearch --port 9200
 minikube ssh
 
 Watch out! you need to call `minikube addons enable ingress` **after** having created the ingress resource!
+
+
+## elasticsearch
+https://www.elastic.co/blog/getting-started-with-elastic-cloud-on-kubernetes-deployment
+
+    λ> kubectl apply -f https://download.elastic.co/downloads/eck/0.9.0/all-in-one.yam
+    λ> kubectl apply -f https://raw.githubusercontent.com/adamquan/ECK/master/apm_es_kibana.yaml
+
+λ> mkdir -p volumes/elasticsearch/data
+
+https://lernentec.com/post/running-simple-elasticsearch-kibana-minikube/
+
+    λ> kubectl create -f base/elasticsearch.yaml 
+    statefulset.apps/elasticsearch created
+    service/elasticsearch created
+
+
+
+
+minikube start --mount --mount-string=$PWD/volumes/elasticsearch:/volumes/elasticsearch
+
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.9.3
+https://hub.docker.com/_/elasticsearch
+
+λ> minikube start --mount --mount-string=$PWD/volumes/elasticsearch:/volumes/elasticsearch
