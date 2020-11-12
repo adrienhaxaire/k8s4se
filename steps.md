@@ -117,3 +117,5 @@ docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsear
 https://hub.docker.com/_/elasticsearch
 
 λ> minikube start --mount --mount-string=$PWD/volumes/elasticsearch:/volumes/elasticsearch
+
+minikube start --mount --mount-string=$PWD/volumes:/volumes --driver=virtualbox

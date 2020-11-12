@@ -2,3 +2,7 @@ resources:
 - k8s4se-namespace.yaml
 - hello-service.yaml
 - hello-deployment.yaml
+- monitoring-namespace.yaml
+- elasticsearch.yaml
+- fluentd.yaml
+- kibana.yaml
