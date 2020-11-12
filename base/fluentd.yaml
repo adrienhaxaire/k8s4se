@@ -26,6 +26,11 @@ spec:
           requests:
             cpu: 100m
             memory: 200Mi
+        env:
+        - name: FLUENT_ELASTICSEARCH_HOST
+          value: "elasticsearch"
+        - name: FLUENT_ELASTICSEARCH_PORT
+          value: "9200"
         volumeMounts:
         - name: varlog
           mountPath: /var/log

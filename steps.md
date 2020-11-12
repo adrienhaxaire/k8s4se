@@ -119,3 +119,11 @@ https://hub.docker.com/_/elasticsearch
 λ> minikube start --mount --mount-string=$PWD/volumes/elasticsearch:/volumes/elasticsearch
 
 minikube start --mount --mount-string=$PWD/volumes:/volumes --driver=virtualbox
+
+Check DNS: https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/
+
+λ> k port-forward services/elasticsearch 9200 -n monitoring
+
+https://dev.to/amitsaha/how-to-set-up-log-forwarding-in-a-kubernetes-cluster-using-fluent-bit-3bgk
+
+λ> k -n monitoring exec --stdin --tty fluentd-xxxx -- /bin/sh

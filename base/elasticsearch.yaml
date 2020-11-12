@@ -43,6 +43,7 @@ metadata:
   labels:
     service: elasticsearch
 spec:
+  type: NodePort
   ports:
   - port: 9200
     name: client
