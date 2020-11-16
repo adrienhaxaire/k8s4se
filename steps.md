@@ -127,3 +127,41 @@ Check DNS: https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-res
 https://dev.to/amitsaha/how-to-set-up-log-forwarding-in-a-kubernetes-cluster-using-fluent-bit-3bgk
 
 λ> k -n monitoring exec --stdin --tty fluentd-xxxx -- /bin/sh
+
+
+Okay, EFK is too complicated and resource intensive, not worth my free time
+Going "Native Kubernetes"
+
+Use cAdvisor instead, officially supported by Google: https://github.com/google/cadvisor/tree/master/deploy/kubernetes
+
+Rancher tutorials to setup dashboard and cAdvisor:
+https://rancher.com/blog/2019/native-kubernetes-monitoring-tools-part-1
+https://rancher.com/blog/2019/native-kubernetes-monitoring-tools-part-2
+
+cAdvisor UI deprecated, Heapster too, this stinks. Looking into the metrics server: https://github.com/kubernetes-sigs/metrics-server
+
+λ> kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+Something to read during the winter, by the fire: https://github.com/kubernetes/community/tree/master/contributors/design-proposals
+
+minikube addons enable metrics-server
+minikube addons enable efk
+
+    λ> kubectl top pod -n kube-system
+    NAME                               CPU(cores)   MEMORY(bytes)   
+    coredns-f9fd979d6-tjj46            7m           9Mi             
+    elasticsearch-logging-tp2zh        476m         1431Mi          
+    etcd-minikube                      34m          26Mi            
+    fluentd-es-6k82v                   17m          91Mi            
+    kibana-logging-qbkl6               32m          618Mi           
+    kube-apiserver-minikube            99m          262Mi           
+    kube-controller-manager-minikube   37m          41Mi            
+    kube-proxy-7kl6f                   0m           14Mi            
+    kube-scheduler-minikube            5m           14Mi            
+    metrics-server-d9b576748-r974c     1m           10Mi            
+    storage-provisioner                2m           8Mi      
+
+ES + kibana take 2Gi!!! fluentd still takes 91Mi
+
+RBAC: TODO
+
