@@ -2,3 +2,5 @@ resources:
 - k8s4se-namespace.yaml
 - hello-service.yaml
 - hello-deployment.yaml
+- crashloop-reporter-service.yaml
+- crashloop-reporter-deployment.yaml

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crashloop-reporter
+  namespace: k8s4se
+spec:
+  replicas: 
+  selector:
+    matchLabels:
+      deployment: crashloop-reporter
+  template:
+    metadata:
+      labels:
+        deployment: crashloop-reporter
+    spec:
+      containers:
+      - name: crashloop-reporter
+        image: k8s4se/crashloop-reporter:latest
+        ports:
+        - containerPort: 8080

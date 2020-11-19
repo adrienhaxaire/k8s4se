@@ -165,3 +165,50 @@ ES + kibana take 2Gi!!! fluentd still takes 91Mi
 
 RBAC: TODO
 
+
+
+
+Listing pods in namespace
+
+```
+λ> kga
+NAMESPACE     NAME                                      READY   STATUS             RESTARTS   AGE
+k8s4se        pod/crashloop-reporter-5c65d969dd-jzlhl   0/1     CrashLoopBackOff   3          89s
+k8s4se        pod/hello-8446c9b67-jngmb                 1/1     Running            1          24h
+kube-system   pod/coredns-f9fd979d6-s2zdm               1/1     Running            1          24h
+kube-system   pod/etcd-minikube                         1/1     Running            1          24h
+kube-system   pod/kube-apiserver-minikube               1/1     Running            1          24h
+kube-system   pod/kube-controller-manager-minikube      1/1     Running            1          24h
+kube-system   pod/kube-proxy-h6v5g                      1/1     Running            1          24h
+kube-system   pod/kube-scheduler-minikube               1/1     Running            1          24h
+kube-system   pod/storage-provisioner                   1/1     Running            3          24h
+
+NAMESPACE     NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                  AGE
+default       service/kubernetes           ClusterIP   10.96.0.1        <none>        443/TCP                  24h
+k8s4se        service/crashloop-reporter   ClusterIP   10.97.85.161     <none>        8080/TCP                 21m
+k8s4se        service/hello                NodePort    10.110.178.158   <none>        8080:31437/TCP           24h
+kube-system   service/kube-dns             ClusterIP   10.96.0.10       <none>        53/UDP,53/TCP,9153/TCP   24h
+
+NAMESPACE     NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system   daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   24h
+λ> k logs -n k8s4se crashloop-reporter-5c65d969dd-jzlhl
+2020/11/19 19:54:38 namespace: k8s4se
+panic: pods is forbidden: User "system:serviceaccount:k8s4se:default" cannot list resource "pods" in API group "" in the namespace "k8s4se"
+
+goroutine 1 [running]:
+main.main()
+	/home/adrien/development/k8s4se/applications/crashloop-reporter/crashloop_reporter.go:34 +0x356
+```
+
+On Minikube:
+
+    λ> kubectl create clusterrolebinding k8s4se-view --clusterrole=view --serviceaccount=k8s4se:default
+
+```
+λ> k logs -n k8s4se crashloop-reporter-5c65d969dd-tpjm8 
+2020/11/19 20:18:04 namespace: k8s4se
+There are 3 pods in the k8s4se namespace
+There are 2 pods in the k8s4se namespace
+There are 2 pods in the k8s4se namespace
+There are 2 pods in the k8s4se namespace
+```
