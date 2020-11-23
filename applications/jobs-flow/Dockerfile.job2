@@ -1,0 +1,4 @@
+FROM alpine:3.12.1
+
+ADD job2 /app/job2
+CMD /app/job2
