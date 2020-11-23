@@ -1,32 +1,4 @@
 ---
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: jobs
-  namespace: k8s4se
-spec:
-  serviceName: jobs
-  selector:
-    matchLabels:
-      app: jobs
-  template:
-    metadata:
-      labels:
-        app: jobs
-    spec:
-      containers:
-      - name: job1
-        image: k8s4se/job1
-        imagePullPolicy: IfNotPresent
-        volumeMounts:
-        - name: data
-          mountPath: /app/data
-      volumes:
-      - name: data
-        hostPath:
-          path: /volumes/jobs-flow/data
-          type: DirectoryOrCreate
----
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -38,9 +10,16 @@ spec:
       containers:
       - name: job1
         image: k8s4se/job1
-        imagePullPolicy: IfNotPresent
-        #command: ["/app/job1"]
-        command: ["ls", "/mnt"]
+        imagePullPolicy: Always
+        command: ["/app/job1"]
+        volumeMounts:
+        - name: data
+          mountPath: /app/data
+      volumes:
+      - name: data
+        hostPath:
+          path: /volumes/jobs-flow/data
+          type: DirectoryOrCreate
 
       restartPolicy: Never
   backoffLimit: 1
