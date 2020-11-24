@@ -1,0 +1,32 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job1job2
+  namespace: k8s4se
+spec:
+  template:
+    spec:
+      containers:
+      - name: job1
+        image: k8s4se/job1
+        imagePullPolicy: Always
+        command: ["/app/job1"]
+        volumeMounts:
+        - name: data
+          mountPath: /app/data
+      - name: job2
+        image: k8s4se/job2
+        imagePullPolicy: Always
+        command: ["/app/job2"]
+        volumeMounts:
+        - name: data
+          mountPath: /app/data
+      volumes:
+      - name: data
+        hostPath:
+          path: /volumes/jobs-flow/data
+          type: DirectoryOrCreate
+
+      restartPolicy: Never
+  backoffLimit: 1

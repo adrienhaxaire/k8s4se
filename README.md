@@ -16,4 +16,7 @@ Notes on learning Kubernetes from a software engineer background
 - prometheus for metrics and alerts
 - dashboards with grafana
 
+## Getting started
+
+    minikube start --mount --mount-string=$PWD/volumes:/volumes
 
